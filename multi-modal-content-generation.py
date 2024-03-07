@@ -6,12 +6,13 @@ import streamlit as st
 import os
 import google.generativeai as genai
 import replicate
+from youtube_transcript_api import YouTubeTranscriptApi
 from PIL import Image
 import time
 
 # set api key
 genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
-REPLICATE_API_TOKEN = os.getenv("REPLICATE_API_KEY")
+REPLICATE_API_TOKEN=os.getenv("REPLICATE_API_TOKEN")
 
 # initialize our models
 vis_model = genai.GenerativeModel("gemini-pro-vision")
@@ -60,7 +61,7 @@ multimodal_options = st.sidebar.radio(
 )
 st.sidebar.divider()
 
-# =======================================================================================
+# ========================================================================================================================================
 
 if multimodal_options == "Chat and Image Summarization":
 
@@ -118,7 +119,7 @@ if multimodal_options == "Chat and Image Summarization":
         # Add assistant response to chat history
         st.session_state.messages.append({"role": "assistant", "content": get_gemini_response(prompt, image)})
 
-# =============================================================================
+# ===========================================================================================================================================
 
 def generate_and_display_image(submitted: bool, width: int, height: int, num_outputs: int, scheduler: str, num_inference_steps: int, prompt_strength: float, prompt: str):
     """
@@ -207,4 +208,4 @@ if multimodal_options == "Text 2 Image":
     width, height, num_outputs, scheduler, num_inference_steps, prompt_strength, prompt, submitted = refine_output()
     generate_and_display_image(width, height, num_outputs, scheduler, num_inference_steps, prompt_strength, prompt, submitted)
 
-# ============================================================================
+# ========================================================================================================================================
