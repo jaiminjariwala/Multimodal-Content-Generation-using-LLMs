@@ -47,8 +47,7 @@ st.set_page_config(
 
 # give title
 st.sidebar.title(":rainbow[MULTIMODAL CONTENT GENERATION]")
-github_link = "https://github.com/jaiminjariwala"
-st.sidebar.write("Built by [jaiminjariwala]({github_link}) 😀")
+st.sidebar.write("Built by [jaiminjariwala](https://github.com/jaiminjariwala) 😀")
 st.sidebar.divider()
 
 # Multimodals Options
