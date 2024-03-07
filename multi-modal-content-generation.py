@@ -11,7 +11,7 @@ import time
 
 # set api key
 genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
-REPLICATE_API_TOKEN=os.getenv("REPLICATE_API_TOKEN")
+# REPLICATE_API_TOKEN=os.getenv("REPLICATE_API_TOKEN")
 
 # initialize our models
 vis_model = genai.GenerativeModel("gemini-pro-vision")
@@ -124,7 +124,8 @@ def generate_and_display_image(submitted: bool, width: int, height: int, num_out
     """
     Generates an image using the specified prompt and parameters.
     """
-    if submitted and prompt:
+        
+    if REPLICATE_API_TOKEN.startswith('r8_') and submitted and prompt:
         with st.status('Generating your image...', expanded=True) as status:
             try:
                 # Only call the API if the "Submit" button was pressed
@@ -138,7 +139,7 @@ def generate_and_display_image(submitted: bool, width: int, height: int, num_out
                             "width": width,
                             "height": height,
                             "num_outputs": num_outputs,
-                            "scheduler": scheduler,
+                            "scheduler": "K_EULER",
                             "num_inference_steps": num_inference_steps,
                             "guidance_scale": 7.5,
                             "prompt_stregth": prompt_strength,
@@ -203,6 +204,16 @@ def refine_output():
 
 # Prompt input and image generation logic
 if multimodal_options == "Text 2 Image":
+
+    REPLICATE_API_TOKEN=st.sidebar.text_input(
+        "Enter your REPLICATE API TOKEN",
+        placeholder="Paste token here...",
+        type="password"
+    )
+    os.environ["REPLICATE_API_TOKEN"]=REPLICATE_API_TOKEN
+
+    if not REPLICATE_API_TOKEN.startswith('r8_'):
+        st.warning('Please enter your REPLICATE API KEY in **Sidebar**!', icon='⚠')
 
     width, height, num_outputs, scheduler, num_inference_steps, prompt_strength, prompt, submitted = refine_output()
     generate_and_display_image(width, height, num_outputs, scheduler, num_inference_steps, prompt_strength, prompt, submitted)
