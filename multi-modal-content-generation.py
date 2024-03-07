@@ -6,7 +6,6 @@ import streamlit as st
 import os
 import google.generativeai as genai
 import replicate
-from youtube_transcript_api import YouTubeTranscriptApi
 from PIL import Image
 import time
 
