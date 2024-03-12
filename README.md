@@ -39,8 +39,7 @@ https://github.com/jaiminjariwala/Multimodal-Content-Generation-using-LLMs/asset
 4. Create .env file and add your API TOKEN
    ```
    GOOGLE_API_KEY="Enter Your GOOGLE API TOKEN"
-
-   REPLICATE_API_KEY="ENTER YOUR REPLICATE API TOKEN "
+   REPLICATE_API_KEY=""
    ```
 5. To run app
     ```
