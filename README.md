@@ -45,3 +45,5 @@ https://github.com/jaiminjariwala/Multimodal-Content-Generation-using-LLMs/asset
     ```
     streamlit run <name-of-app>.py
     ```
+
+## Also Deployed on Render (but due to inactivity, it may take around 50 seconds to load the site): https://multimodal-content-generation-using-llms.onrender.com/
